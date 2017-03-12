@@ -3,6 +3,9 @@
     var stocks = ['MSFT', 'AAPL'];
     var stockData = [];
 
+    // 2. initialize PouchDB
+    var db = new PouchDB('my_database');
+
     document.querySelector('.nav-wrapper.container').addEventListener('click', function (eventArgs) {
         if (eventArgs.srcElement.innerHTML === 'loop' ||
             eventArgs.srcElement.innerText === 'loopAktualisieren') {
@@ -18,6 +21,13 @@
         var stockName = document.getElementById('name').value;
         if (stockName) {
             stocks.push(stockName);
+
+            // 3. Save new stocks in DB
+            db.put({
+                _id: 'stocks',
+                stocks: stocks
+            });
+
             loadStockData();
         }
         document.getElementById('name').value = '';
@@ -73,5 +83,12 @@
         document.getElementById('stocks').appendChild(fragment);
     }
 
-    loadStockData();
+    // 4. Load stocks from DB
+    db.get('stocks').then(function (data) {
+        stocks = data.stocks;
+        loadStockData();
+    }).catch(function () {
+        loadStockData();
+    });
+
 }());

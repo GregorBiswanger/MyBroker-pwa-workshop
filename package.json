@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "materialize-css": "^0.98.0"
+    "materialize-css": "^0.98.0",
+    "pouchdb": "^6.1.2"
+  },
+  "devDependencies": {
+    "@types/pouchdb": "^5.4.28"
   }
 }
