@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Broker</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+    />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <nav class="blue darken-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">My Broker</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a name="loopBtn" href="#"><i class="large material-icons">loop</i></a></li>
+                <li><a name="addBtn" href="#"><i class="large material-icons">add</i></a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li><a name="loopBtn" href="#"><i class="large material-icons">loop</i>Aktualisieren</a></li>
+                <li><a name="addBtn" href="#"><i class="large material-icons">add</i>Hinzufügen</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="section no-pad-bot" id="index-banner">
+            <div class="container">
+                <div id="newStock" class="row hide">
+                    <div class="input-field col s8 m6">
+                        <input id="name" type="text" class="validate">
+                        <label class="active" for="name">Name</label>
+                    </div>
+                    <div class="col s4">
+                        <button id="addStock" class="btn waves-effect waves-light blue darken-1" style="margin-top: 20px;">OK</button>
+                    </div>
+                </div>
+                <div id="stocks" class="row">
+
+                    <div id="cardTemplate" class="col s12 m6" hidden>
+                        <div class="card hoverable blue darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title" style="margin-bottom: 0px;">Ticker</span>
+                                <div id="DateTime">Last Trade Time</div>
+
+                                <div id="LastTradePrice" class="col s6" style="padding-left: 0;font-size: 22px;">Price</div>
+                                <div id="Change" class="col offset-s2 s2">Change</div>
+                                <div id="ChangeinPercent" class="col s2">Change Percentage</div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Merken</a>
+                                <a href="#">Kaufen</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum optio et consequuntur animi rem! Velit
+                        aperiam facere, corrupti quas cum explicabo, similique aut quam incidunt temporibus repellat excepturi
+                        adipisci culpa!</p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by Gregor Biswanger (C) 2017
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
