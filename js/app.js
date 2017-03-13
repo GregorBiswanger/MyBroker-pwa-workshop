@@ -64,8 +64,6 @@
     function getServiceUrl() {
         var yqlQuery = 'select Name,symbol,LastTradeDate,LastTradeTime,LastTradePriceOnly,Currency,Change,ChangeinPercent from yahoo.finance.quotes where symbol in';
         var url = 'http://query.yahooapis.com/v1/public/yql?env=store://datatables.org/alltableswithkeys&format=json&q=' + yqlQuery + '("' + stocks.join(',') + '")';
-        console.log(url);
-        console.log(encodeURI(url));
 
         return encodeURI(url);
     }
