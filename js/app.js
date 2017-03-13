@@ -5,7 +5,6 @@
     var db = new PouchDB('my_database');
 
     document.querySelector('.nav-wrapper.container').addEventListener('click', function (eventArgs) {
-        // 2. Offline detection        
         if (navigator.onLine) {
             if (eventArgs.srcElement.innerHTML === 'loop' ||
                 eventArgs.srcElement.innerText === 'loopAktualisieren') {
@@ -107,14 +106,29 @@
         loadStockData();
     });
 
+    // 2. Integration Push Notification
     if (navigator.serviceWorker) {
         navigator.serviceWorker.register('./service-worker.js')
-            .then(function () {
+            .then(function (swPushNotification) {
                 console.log('Service Worker Registered');
+
+                // Push API
+                if (window.PushManager) {
+                    swPushNotification.pushManager.subscribe({
+                        userVisibleOnly: true
+                    }).then(function (subscription) {
+                        console.log('User is subscribed:', subscription);
+                    }).catch(function (error) {
+                        if (Notification.permission === 'denied') {
+                            console.warn('Permission for notifications was denied');
+                        } else {
+                            console.error('Failed to subscribe the user: ', error);
+                        }
+                    });
+                }
             });
     }
 
-    // 1. Offline Detection
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
 
@@ -133,4 +147,44 @@
             element.classList.add(navigator.onLine ? 'white-text' : 'blue-text');
         });
     }
+
+    // 1. Integrating Notification
+    if (window.Notification) {
+        Notification.requestPermission(function (status) {
+            console.log('Notification permission status:', status);
+        });
+    } else {
+        console.log('This browser does not support notifications!');
+    }
+
+    function displayNotification() {
+        if (Notification.permission === 'granted') {
+            navigator.serviceWorker.getRegistration().then(function (registration) {
+
+                var options = {
+                    body: 'First notification!',
+                    icon: 'images/notification-flat.png',
+                    vibrate: [100, 50, 100],
+                    data: {
+                        dateOfArrival: Date.now(),
+                        primaryKey: 1
+                    },
+                    actions: [
+                        {
+                            action: 'payShare', title: 'Aktie kaufen?',
+                            icon: 'images/checkmark.png'
+                        },
+                        {
+                            action: 'close', title: 'Schließen',
+                            icon: 'images/xmark.png'
+                        },
+                    ]
+                };
+
+                registration.showNotification('Hello world!', options);
+            });
+        }
+    }
+
+    displayNotification();
 }());

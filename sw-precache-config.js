@@ -9,8 +9,9 @@ module.exports = {
         './node_modules/materialize-css/dist/js/materialize.min.js',
         './node_modules/pouchdb/dist/pouchdb.min.js'
     ],
-    "importScripts": [
+    importScripts: [
            "node_modules/sw-toolbox/sw-toolbox.js",
-            "js/toolbox-script.js"
+            "js/toolbox-script.js",
+            "sw-push-notification.js"
     ]
 };
