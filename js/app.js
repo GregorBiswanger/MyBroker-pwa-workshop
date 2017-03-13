@@ -5,13 +5,18 @@
     var db = new PouchDB('my_database');
 
     document.querySelector('.nav-wrapper.container').addEventListener('click', function (eventArgs) {
-        if (eventArgs.srcElement.innerHTML === 'loop' ||
-            eventArgs.srcElement.innerText === 'loopAktualisieren') {
-            loadStockData();
-        } else if (eventArgs.srcElement.innerHTML === 'add' ||
-            eventArgs.srcElement.innerText === 'addHinzufügen') {
-            document.getElementById('newStock').classList.remove('hide');
-            document.getElementById('stocks').classList.add('hide');
+        // 2. Offline detection        
+        if (navigator.onLine) {
+            if (eventArgs.srcElement.innerHTML === 'loop' ||
+                eventArgs.srcElement.innerText === 'loopAktualisieren') {
+                loadStockData();
+            } else if (eventArgs.srcElement.innerHTML === 'add' ||
+                eventArgs.srcElement.innerText === 'addHinzufügen') {
+                document.getElementById('newStock').classList.remove('hide');
+                document.getElementById('stocks').classList.add('hide');
+            }
+        } else {
+            Materialize.toast('Sorry! Sie sind Offline!', 4000, 'red');
         }
     });
 
@@ -102,11 +107,30 @@
         loadStockData();
     });
 
-    // TODO add service worker code here
     if (navigator.serviceWorker) {
         navigator.serviceWorker.register('./service-worker.js')
             .then(function () {
                 console.log('Service Worker Registered');
             });
+    }
+
+    // 1. Offline Detection
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+    function updateOnlineStatus() {
+        if (navigator.onLine) {
+            Materialize.toast('Sie sind wieder Online', 4000, 'green');
+            loadStockData();
+        } else {
+            Materialize.toast('Sie sind jetzt Offline', 4000, 'red');
+        }
+
+        var elements = document.querySelectorAll('.nav-wrapper.container li a');
+        elements.forEach(function (element) {
+            element.classList.remove('white-text');
+            element.classList.remove('blue-text');
+            element.classList.add(navigator.onLine ? 'white-text' : 'blue-text');
+        });
     }
 }());

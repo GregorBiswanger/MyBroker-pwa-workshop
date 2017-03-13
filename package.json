@@ -16,6 +16,7 @@
     "sw-toolbox": "^3.6.0"
   },
   "devDependencies": {
+    "@types/materialize-css": "^0.98.0",
     "@types/pouchdb": "^5.4.28",
     "sw-precache": "^5.0.0"
   }
