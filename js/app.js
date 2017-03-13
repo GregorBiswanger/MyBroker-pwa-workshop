@@ -1,9 +1,7 @@
 (function () {
     'use strict';
-    var stocks = ['MSFT', 'AAPL'];
+    var stocks = [];
     var stockData = [];
-
-    // 2. initialize PouchDB
     var db = new PouchDB('my_database');
 
     document.querySelector('.nav-wrapper.container').addEventListener('click', function (eventArgs) {
@@ -22,10 +20,15 @@
         if (stockName) {
             stocks.push(stockName);
 
-            // 3. Save new stocks in DB
-            db.put({
-                _id: 'stocks',
-                stocks: stocks
+            db.get('stocks').catch(function (error) {
+                if (error.name === 'not_found') {
+                    return {
+                        _id: 'stocks'
+                    };
+                }
+            }).then(function (data) {
+                data.stocks = stocks;
+                db.put(data);
             });
 
             loadStockData();
@@ -52,15 +55,19 @@
                     renderStockUI();
                 }
             }
-        }
+        };
+
         httpRequest.open('GET', getServiceUrl());
         httpRequest.send();
     }
 
     function getServiceUrl() {
-        var yqlQuery = 'select * from yahoo.finance.quotes where symbol=';
+        var yqlQuery = 'select Name,symbol,LastTradeDate,LastTradeTime,LastTradePriceOnly,Currency,Change,ChangeinPercent from yahoo.finance.quotes where symbol in';
+        var url = 'http://query.yahooapis.com/v1/public/yql?env=store://datatables.org/alltableswithkeys&format=json&q=' + yqlQuery + '("' + stocks.join(',') + '")';
+        console.log(url);
+        console.log(encodeURI(url));
 
-        return encodeURI('http://query.yahooapis.com/v1/public/yql?env=store://datatables.org/alltableswithkeys&format=json&q=' + yqlQuery + '"' + stocks.join(',') + '"');
+        return encodeURI(url);
     }
 
     function renderStockUI() {
@@ -83,12 +90,25 @@
         document.getElementById('stocks').appendChild(fragment);
     }
 
-    // 4. Load stocks from DB
-    db.get('stocks').then(function (data) {
+    db.get('stocks').catch(function (error) {
+        if (error.name === 'not_found') {
+            return {
+                _id: 'stocks',
+                stocks: ['MSFT', 'AAPL']
+            };
+        }
+    }).then(function (data) {
         stocks = data.stocks;
         loadStockData();
     }).catch(function () {
         loadStockData();
     });
 
+    // TODO add service worker code here
+    if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('./service-worker.js')
+            .then(function () {
+                console.log('Service Worker Registered');
+            });
+    }
 }());

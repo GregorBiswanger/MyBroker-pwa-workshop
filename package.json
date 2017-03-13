@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server"
+    "start": "http-server",
+    "build": "sw-precache --config=sw-precache-config.js --verbose"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "materialize-css": "^0.98.0",
-    "pouchdb": "^6.1.2"
+    "pouchdb": "^6.1.2",
+    "sw-toolbox": "^3.6.0"
   },
   "devDependencies": {
-    "@types/pouchdb": "^5.4.28"
+    "@types/pouchdb": "^5.4.28",
+    "sw-precache": "^5.0.0"
   }
 }
