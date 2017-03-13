@@ -106,13 +106,11 @@
         loadStockData();
     });
 
-    // 2. Integration Push Notification
     if (navigator.serviceWorker) {
         navigator.serviceWorker.register('./service-worker.js')
             .then(function (swPushNotification) {
                 console.log('Service Worker Registered');
 
-                // Push API
                 if (window.PushManager) {
                     swPushNotification.pushManager.subscribe({
                         userVisibleOnly: true
@@ -148,7 +146,6 @@
         });
     }
 
-    // 1. Integrating Notification
     if (window.Notification) {
         Notification.requestPermission(function (status) {
             console.log('Notification permission status:', status);
