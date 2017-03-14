@@ -1,7 +1,2 @@
-!node_modules/
-
-node_modules/*
-!node_modules/jquery/
-!node_modules/materialize-css/
-!node_modules/pouchdb/
+node_modules
 .vscode/chrome

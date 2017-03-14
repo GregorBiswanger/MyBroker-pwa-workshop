@@ -3,14 +3,14 @@ module.exports = {
         './css/**.css',
         './**.html',
         './js/**.js',
-        './node_modules/materialize-css/dist/css/materialize.min.css',
-        './node_modules/materialize-css/dist/fonts/roboto/*',
-        './node_modules/jquery/dist/jquery.min.js',
-        './node_modules/materialize-css/dist/js/materialize.min.js',
-        './node_modules/pouchdb/dist/pouchdb.min.js'
+        './libs/materialize-css/dist/css/materialize.min.css',
+        './libs/materialize-css/dist/fonts/roboto/*',
+        './libs/jquery/dist/jquery.min.js',
+        './libs/materialize-css/dist/js/materialize.min.js',
+        './libs/pouchdb/dist/pouchdb.min.js'
     ],
     importScripts: [
-           "node_modules/sw-toolbox/sw-toolbox.js",
+           "libs/sw-toolbox/sw-toolbox.js",
             "js/toolbox-script.js",
             "sw-push-notification.js"
     ]
