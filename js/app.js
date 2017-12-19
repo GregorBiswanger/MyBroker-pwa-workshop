@@ -48,14 +48,8 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200) {
                     var response = httpRequest.response.replace('//', '');
-                    var result = JSON.parse(response);
-                    var quoteData = result.query.results.quote;
+                    stockData = JSON.parse(response);
 
-                    if (Array.isArray(quoteData)) {
-                        stockData = quoteData;
-                    } else {
-                        stockData.push(quoteData);
-                    }
                     renderStockUI();
                 }
             }
