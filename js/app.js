@@ -49,7 +49,6 @@
                 if (httpRequest.status === 200) {
                     var response = httpRequest.response.replace('//', '');
                     stockData = JSON.parse(response);
-
                     renderStockUI();
                 }
             }
