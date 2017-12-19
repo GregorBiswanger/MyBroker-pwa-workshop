@@ -66,8 +66,7 @@
     }
 
     function getServiceUrl() {
-        var yqlQuery = 'select Name,symbol,LastTradeDate,LastTradeTime,LastTradePriceOnly,Currency,Change,ChangeinPercent from yahoo.finance.quotes where symbol in';
-        var url = 'https://query.yahooapis.com/v1/public/yql?env=store://datatables.org/alltableswithkeys&format=json&q=' + yqlQuery + '("' + stocks.join(',') + '")';
+        var url = 'https://stockplaceholder.herokuapp.com/api/stocks' + stocks.join('/');
 
         return encodeURI(url);
     }
@@ -78,12 +77,12 @@
 
         stockData.forEach(function (stock) {
             var card = cardTemplate.cloneNode(true);
-            card.querySelector('.card-title').textContent = stock.Name + ' (' + stock.symbol + ')';
-            card.querySelector('#DateTime').textContent = stock.LastTradeDate + ' - ' + stock.LastTradeTime;
-            card.querySelector('#LastTradePrice').textContent = stock.LastTradePriceOnly + ' ' + stock.Currency;
-            card.querySelector('#Change').textContent = stock.Change;
-            card.querySelector('#Change').className += stock.Change.indexOf('+') > -1 ? ' green' : ' red';
-            card.querySelector('#ChangeinPercent').textContent = stock.ChangeinPercent;
+            card.querySelector('.card-title').textContent = stock.name + ' (' + stock.symbol + ')';
+            card.querySelector('#DateTime').textContent = stock.lastTradeDate + ' - ' + stock.lastTradeTime;
+            card.querySelector('#LastTradePrice').textContent = stock.lastTradePriceOnly + ' ' + stock.currency;
+            card.querySelector('#Change').textContent = stock.change;
+            card.querySelector('#Change').className += stock.change.indexOf('+') > -1 ? ' green' : ' red';
+            card.querySelector('#ChangeinPercent').textContent = stock.changeinPercent;
             card.removeAttribute('hidden');
             fragment.appendChild(card);
         });
