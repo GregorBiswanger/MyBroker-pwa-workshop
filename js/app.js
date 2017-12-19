@@ -66,7 +66,7 @@
     }
 
     function getServiceUrl() {
-        var url = 'https://stockplaceholder.herokuapp.com/api/stocks' + stocks.join('/');
+        var url = 'https://stockplaceholder.herokuapp.com/api/stocks/' + stocks.join('/');
 
         return encodeURI(url);
     }
