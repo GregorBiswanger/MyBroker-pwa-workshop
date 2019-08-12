@@ -13,7 +13,7 @@ The following is required for the project:
   
 There has already been deposited a complete exercise project on GitHub for you:    
   
-`git clone https://github.com/GregorBiswanger/NgMyBroker.git`  
+`git clone https://github.com/GregorBiswanger/MyBroker-Template.git`  
 
 Then install all necessary modules within the project with `npm install`.  
 
