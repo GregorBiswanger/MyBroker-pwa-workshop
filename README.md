@@ -1,8 +1,8 @@
 # MyBroker
 
-The **MyBroker** Template should be implemented in native JavaScript.
+The **MyBroker** Template should be implemented as an Progressive Web App.
 
-## The MyBroker PWA
+## The finish MyBroker PWA
 Try it with Google Chrome.  
 https://gregorbiswanger.github.io/MyBroker/
 
@@ -13,28 +13,18 @@ The following is required for the project:
   
 There has already been deposited a complete exercise project on GitHub for you:    
   
-`git clone https://github.com/GregorBiswanger/MyBroker-Template.git`  
+`git clone https://github.com/GregorBiswanger/MyBroker-pwa-workshop.git`  
 
 Then install all necessary modules within the project with `npm install`.  
 
 ## To-do´s
-You need the same default behavior of the MyBroker Web App:
-- Two pages with routing
-- Logic to add a new stock
-- Load stock data from Web-Service (see below)
-- Show stock data on dashboard
-- Update stock data on a reload-button click
-- Use a red or green label for the change value
-  
-## Bonus to-do´s
-For young padawans with more experience, you can implement the next features:
-- Save the stock data with the HTML5 standard database **LocalStorage**
-- Implement a remove stock on dashboard
-- Push a materialize **toast** for updated stocks with positive change value (see on documentation http://materializecss.com/)
-
-## Extrem bonus Todo
-For absolute Jedi Knights:
-- Create a **simulation game** from this project ;)
+In this hands-on workshop we will do the following steps:
+- App Shell
+- Fast Start
+- Offline-First
+- Offline-Detection
+- Support native integration
+- Installable
 
 ## Dummy Web-Service
 This Node.js based REST Web-Service delivers dummy stock data.  
@@ -43,4 +33,4 @@ https://stockplaceholder.herokuapp.com/api/stocks
 ### Documentation of the Web-Service
 https://stockplaceholder.herokuapp.com/api-docs/
 
-**Good luck!**
+**Enjoy!**
