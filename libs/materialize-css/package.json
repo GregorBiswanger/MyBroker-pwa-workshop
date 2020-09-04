@@ -73,7 +73,7 @@
     "jasmine": "^2.3.2",
     "jasmine-jquery": "^2.1.1",
     "jquery": "^2.1.4",
-    "node-sass": "^3.4.2",
+    "node-sass": "^4.14.1",
     "phantomjs": "^1.9.18"
   },
   "directories": {},
